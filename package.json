@@ -1,0 +1,35 @@
+{
+  "name": "javascript-di-template",
+  "version": "0.0.0",
+  "description": "A javascript dependency injection based template project",
+  "main": "src/server.js",
+  "author": "pedroougano@gmail.com",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "lint": "eslint .",
+    "start": "nodemon -r dotenv/config src/server.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "jest --bail --findRelatedTests --passWithNoTests"
+    ]
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "koa": "^2.14.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^14.0.1",
+    "nodemon": "^3.0.1"
+  }
+}

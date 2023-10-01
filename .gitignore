@@ -1,0 +1,21 @@
+# Arquivos de log
+logs
+*.log
+
+# Módulos npm
+node_modules/
+
+# Arquivos de compilação ou saída
+build/
+dist/
+
+# Arquivos de configuração locais
+.env
+
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Dependências específicas do sistema operacional ou IDE
+.vscode/
+.idea/
