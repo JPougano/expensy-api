@@ -1,10 +1,8 @@
 const Router = require('koa-router');
 
-module.exports = () => {
+module.exports = ({ maintenanceController }) => {
   const router = new Router();
 
-  router.get("/healthcheck", (ctx) => {
-    ctx.body = "WORKED!";
-  });
+  router.get("/healthcheck", maintenanceController.healthCheck);
   return router;
 };
