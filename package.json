@@ -27,6 +27,7 @@
     "http-status": "^1.7.0",
     "koa": "^2.14.2",
     "koa-router": "^12.0.0",
+    "mongoose": "^7.5.3",
     "winston": "^3.10.0"
   },
   "devDependencies": {
