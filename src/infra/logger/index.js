@@ -1,9 +1,14 @@
 const { createLogger, format, transports } = require("winston");
-const { timestamp, combine, printf, colorize, errors } = format;
-const { LOG_LEVEL } = process.env;
+const { MongoDB } = require("winston-mongodb");
+const { timestamp, combine, printf, colorize, errors, json } = format;
+const { LOG_LEVEL, MONGO_DB_CONNECTION_KEY, FACILITY } = process.env;
 
 module.exports = () => {
   const consoleFormat = printf(({ level, message, timestamp, stack }) => {
+    return `${level} [${timestamp}]: ${stack || message}`;
+  });
+
+  const mongodbFormat = printf(({ level, message, timestamp, stack }) => {
     return `${level} [${timestamp}]: ${stack || message}`;
   });
 
@@ -16,12 +21,27 @@ module.exports = () => {
         errors({ stack: true }),
         consoleFormat
       ),
-    })
+    }),
+    new MongoDB({
+      level: "warn",
+      db: MONGO_DB_CONNECTION_KEY,
+      collection: "logger",
+      format: combine(
+        timestamp(),
+        errors({ stack: true }),
+        format.uncolorize(),
+        format.metadata(),
+        json(),
+        mongodbFormat
+      ),
+      options: { useUnifiedTopology: true },
+      storeHost: true,
+    }),
   ];
 
   const logger = createLogger({
     level: LOG_LEVEL,
-    defaultMeta: { service: "user-service" },
+    defaultMeta: { facility: FACILITY },
     transports: transportArray,
   });
 
