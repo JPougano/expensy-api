@@ -12,7 +12,7 @@ module.exports = ({ router, logger }) => {
     start: async () => {
       try {
         app.listen(PORT, () => {
-          logger.error(`Server listening on ${PORT}`);
+          logger.info(`Server listening on ${PORT}`);
         });
       } catch (err) {
         logger.error("Problem initializing server", {
