@@ -1,5 +1,5 @@
-module.exports = ({ mongoInfra }) => {
-  const isMongoAlive = () => mongoInfra.connection.readyState;
+module.exports = ({ mongoose }) => {
+  const isMongoAlive = () => mongoose.connection.readyState;
   return {
     isMongoAlive,
   };
