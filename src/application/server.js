@@ -1,11 +1,14 @@
 const Koa = require("koa");
 const util = require('util');
+const bodyParser = require("koa-bodyparser");
 const { PORT } = process.env;
 
 module.exports = ({ router, logger }) => {
   const app = new Koa();
 
-  app.use(router.routes());
+  app
+  .use(bodyParser({ enableTypes: ['json'] }))
+  .use(router.routes());
 
   return {
     app,
