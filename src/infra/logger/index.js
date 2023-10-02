@@ -41,6 +41,7 @@ module.exports = () => {
 
   const logger = createLogger({
     level: LOG_LEVEL,
+    collection: "logger",
     defaultMeta: { facility: FACILITY },
     transports: transportArray,
   });
