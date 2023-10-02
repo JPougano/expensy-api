@@ -1,7 +1,7 @@
 {
-  "name": "javascript-di-template",
+  "name": "expensy-api",
   "version": "0.0.0",
-  "description": "A javascript dependency injection based template project",
+  "description": "Part of the backend side application for the expensy ecosystem",
   "main": "src/server.js",
   "author": "pedroougano@gmail.com",
   "scripts": {
