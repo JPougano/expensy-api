@@ -1,7 +1,7 @@
 # EXPENSY-API
 
 Part of the backend side of the whole Expensy ecosystem. 
-It's suposed to handle user and expenses creation and making its date easily and scalably available to other Expensy ecosystem applications.
+It's suposed to handle user and expenses creation and making its data easily and scalably available to other Expensy ecosystem applications.
 
 # Technologies and Architecture
 
