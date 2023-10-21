@@ -1,14 +1,15 @@
 const { asFunction, createContainer } = require("awilix");
 const server = require("./application/server");
 const router = require("./application/router");
-const logger = require("./infra/logger")
+const logger = require("./infra/logger");
 const maintenanceController = require("./application/controller/maintenance");
 const mongoose = require("./infra/mongo/mongoose");
 const mongoHelper = require("./infra/mongo/helpers");
 const userSchema = require("./infra/repository/schema/userSchema");
-const userRepository = require("./infra/repository/userRepository")
-const userBusiness = require('./domain/business/user');
+const userRepository = require("./infra/repository/userRepository");
+const userBusiness = require("./domain/business/user");
 const userController = require("./application/controller/user");
+const userValidation = require("./application/validation/userValidation");
 
 const container = createContainer();
 container.register({
@@ -30,9 +31,12 @@ container.register({
 
   //Business
   userBusiness: asFunction(userBusiness).singleton(),
+
+  // Models
+  userValidation: asFunction(userValidation).singleton(),
 });
-  
-const serverInstance = container.resolve('server');
+
+const serverInstance = container.resolve("server");
 serverInstance.start();
 
 module.exports = container;
