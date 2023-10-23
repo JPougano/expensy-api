@@ -1,9 +1,13 @@
-const Joi = require("joi");
+const Joi = require("@hapi/joi");
 
 module.exports = ({ logger, userRepository, userValidation }) => {
   const createUser = async (userData) => {
     try {
-      Joi.validate(userData, userValidation.createUserModel);
+      const { error } = userValidation.validate(userData);
+      if (error) {
+        throw error
+      }
+
       const createdUser = await userRepository.add(userData);
       logger.info(`New User Created. id: ${createdUser.id}`);
       return createdUser;
