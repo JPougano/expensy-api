@@ -52,8 +52,6 @@ docker-check-if-image-exists:
 ifeq ($(shell $(DOCKER) images -q $(CONTAINER_NAME) 2> /dev/null | wc -l),0)
 	@echo "Docker image not found, building Docker image first"; sleep 2;
 	@make setup
-else
-	@echo "Using found .env file."
 endif
 
 docker-build-image:
