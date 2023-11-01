@@ -36,7 +36,7 @@ start: welcome docker-check-if-image-exists
 	@docker run -t${INTERACTIVE} \
 	--name ${CONTAINER_NAME} \
 	--rm \
-	-p ${PORT}:80 \
+	-p ${PORT}:3000 \
 	-p ${PORT_DEBUG}:5858 \
 	--env-file .env \
 	-e USER_PERM=$(shell id -u):$(shell id -g) \
