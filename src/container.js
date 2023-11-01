@@ -9,7 +9,9 @@ const userSchema = require("./infra/repository/schema/userSchema");
 const userRepository = require("./infra/repository/userRepository");
 const userBusiness = require("./domain/business/user");
 const userController = require("./application/controller/user");
+const authController = require("./application/controller/auth");
 const userValidation = require("./application/validation/userValidation");
+const authMiddleware = require("./application/middleware/auth")
 
 const container = createContainer();
 container.register({
@@ -22,6 +24,10 @@ container.register({
   //Controllers
   maintenanceController: asFunction(maintenanceController).scoped(),
   userController: asFunction(userController).scoped(),
+  authController: asFunction(authController).scoped(),
+
+  // Middlewares
+  authMiddleware: asFunction(authMiddleware).singleton(),
 
   //Schemas
   userSchema: asFunction(userSchema).singleton(),
