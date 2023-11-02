@@ -3,10 +3,10 @@ const Joi = require("@hapi/joi");
 module.exports = ({ logger, userRepository, userValidation }) => {
   const createUser = async (userData) => {
     try {
-      const { error } = userValidation.validate(userData);
-      if (error) {
-        throw error
-      }
+      // const { error } = userValidation.validate(userData);
+      // if (error) {
+      //   throw error
+      // }
 
       const createdUser = await userRepository.add(userData);
       logger.info(`New User Created. id: ${createdUser.id}`);
@@ -19,7 +19,13 @@ module.exports = ({ logger, userRepository, userValidation }) => {
     }
   };
 
+  const getUser = async (requestQuery) => {
+    const user = await userRepository.getOne(requestQuery);
+    return user;
+  };
+
   return {
     createUser,
+    getUser,
   };
 };
