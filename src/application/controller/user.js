@@ -42,7 +42,7 @@ module.exports = ({ userBusiness, ClientErrors, logger }) => {
         throw ClientErrors.InvalidCredentials;
       }
 
-      const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
         expiresIn: "1 hour",
       });
 
