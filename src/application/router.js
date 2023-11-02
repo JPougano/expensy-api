@@ -8,7 +8,7 @@ module.exports = ({ maintenanceController, userController, authMiddleware }) => 
   router.post("/api/user/register", userController.create);
   router.post("/api/user/login", userController.login);
   router.get("/api/user/profile", authMiddleware.authenticate, (ctx) => {
-    ctx.body({ message: `Welcome ${req.user.username}` });
+    ctx.body({ message: `Welcome ${ctx.request.body.user.username}` });
   });
 
   return router;
